@@ -9,9 +9,8 @@ const logout = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         res.setHeader(
             "Set-Cookie",
-            `${cookieName}=deleted; path=/ ; expires=Thu, 01 Jan 1970 00:00:00 GMT`
+            `${cookieName}=deleted; path=/ ; Max-Age=0`
         );
-        
         return res.status(200).json({ message: "success" });
     }
     catch (e) {

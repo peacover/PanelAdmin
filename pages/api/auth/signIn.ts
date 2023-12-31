@@ -37,7 +37,6 @@ const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!user_email) {
       res.status(400).json({ message: "Email Not Found!" });
     }
-
     try {
       if (!user_email?.password)
         res.status(400).json({ message: "Password Not Found!" });

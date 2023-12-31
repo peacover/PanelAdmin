@@ -11,11 +11,8 @@ export const validateJWT = async (token: string) => {
   );
   return payload.id;
 };
-export interface CustomNextRequest extends NextRequest {
-  userId?: string;
-}
 
-export async function middleware(req: CustomNextRequest) {
+export async function middleware(req: NextRequest) {
   let token = null;
   const isAuthPage = Boolean(AUTH_ROUTES.includes(req.nextUrl.pathname));
 
@@ -24,12 +21,7 @@ export async function middleware(req: CustomNextRequest) {
   }
   if (isAuthPage && !token) return NextResponse.next();
   if (!token && !isAuthPage) {
-    return NextResponse.redirect(
-      new URL(
-        `/auth/signIn`,
-        req.url
-      )
-    );
+    return NextResponse.redirect(new URL(`/auth/signIn`, req.url));
   }
 
   try {
@@ -37,28 +29,21 @@ export async function middleware(req: CustomNextRequest) {
     const jwt_id = (await validateJWT(token)) as string;
     // req.userId = jwt_id;
     if (isAuthPage && jwt_id) {
-      return NextResponse.redirect(
-        new URL(
-          `/dashboard`,
-          req.url
-        )
-      );
+      return NextResponse.redirect(new URL(`/dashboard`, req.url));
     }
     return NextResponse.next();
   } catch (e) {
-    req.cookies.delete(cookieName);
-    return NextResponse.redirect(
-      new URL(
-        `/auth/signIn`,
-        req.url
-      )
-    );
+    return NextResponse.redirect(new URL(`/auth/signIn`, req.url), {
+      headers: {
+        "Set-Cookie": `${cookieName}=deleted; path=/ ; Max-Age=0`,
+      },
+    });
   }
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
   // matcher: ["/dashboard", "/api"],
 };
+
+// Howell56@gmail.com

@@ -7,23 +7,21 @@ import { Role } from "@prisma/client";
 const INIT_ADMIN_PASSWORD = "password";
 const INIT_SUPER_ADMIN_PASSWORD = "superpassword";
 
-async function createSuperAdmin() {
-    for (let i = 0; i < 4; i++) {
-      const user = await db.user.create({
-        data: {
-          email: faker.internet.email(),
-          password: await bcrypt.hash(INIT_SUPER_ADMIN_PASSWORD, 10),
-          name: faker.person.firstName() + " " + faker.person.lastName(),
-          role: Role.SUPERADMIN,
-        },
-      });
-    }
+async function createSuperAdmin(nb: number) {
+  for (let i = 0; i < nb; i++) {
+    const user = await db.user.create({
+      data: {
+        email: faker.internet.email(),
+        password: await bcrypt.hash(INIT_SUPER_ADMIN_PASSWORD, 10),
+        name: faker.person.firstName() + " " + faker.person.lastName(),
+        role: Role.SUPERADMIN,
+      },
+    });
+  }
 }
 
-// create 4 admins
-
-async function createAdmin() {
-  for (let i = 0; i < 4; i++) {
+async function createAdmin(nb: number) {
+  for (let i = 0; i < nb; i++) {
     const user = await db.user.create({
       data: {
         email: faker.internet.email(),
@@ -34,9 +32,42 @@ async function createAdmin() {
     });
   }
 }
+
+const createBusinessAdmin = async (nb: number, userType : Role) => {
+  for (let i = 0; i < nb; i++) {
+    const buss_data = {
+      name: faker.company.buzzNoun(),
+      imageUrl: faker.image.url(),
+      description: faker.lorem.paragraph(),
+      // updatedAt: faker.date.recent({ days: 30 }),
+      updatedAt: faker.date.soon({days: 30}),
+    };
+    const buss = await db.user.findMany({
+      where: {
+        role: userType,
+      },
+      select: {
+        id: true,
+      },
+    });
+    const updatedBuss = await db.business.create({
+      data: {
+        ...buss_data,
+        owner: {
+          connect: {
+            id: buss[Math.floor(Math.random() * buss.length)].id,
+          },
+        },
+      },
+    });
+  }
+};
+
 async function main() {
-    await createSuperAdmin();
-    await createAdmin();
+  // await createSuperAdmin(4);
+  // await createAdmin(10);
+  await createBusinessAdmin(30, Role.ADMIN);
+  await createBusinessAdmin(10, Role.SUPERADMIN);
 }
 
 main()

@@ -6,7 +6,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
     try{
-        // console.log("req.cookies: ", req.cookies);
         const cookie = req.cookies[cookieName] as string;
         const userId = await getJwtId(cookie) as string;
         if (!userId) {
