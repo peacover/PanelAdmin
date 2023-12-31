@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: peacover
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: adminpanel
+    ports:
+      - "5438:5432"

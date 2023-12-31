@@ -1,0 +1,348 @@
+{
+  "tldrawFileFormatVersion": 1,
+  "schema": {
+    "schemaVersion": 1,
+    "storeVersion": 4,
+    "recordVersions": {
+      "asset": {
+        "version": 1,
+        "subTypeKey": "type",
+        "subTypeVersions": {
+          "image": 2,
+          "video": 2,
+          "bookmark": 0
+        }
+      },
+      "camera": {
+        "version": 1
+      },
+      "document": {
+        "version": 2
+      },
+      "instance": {
+        "version": 22
+      },
+      "instance_page_state": {
+        "version": 5
+      },
+      "page": {
+        "version": 1
+      },
+      "shape": {
+        "version": 3,
+        "subTypeKey": "type",
+        "subTypeVersions": {
+          "group": 0,
+          "text": 1,
+          "bookmark": 1,
+          "draw": 1,
+          "geo": 7,
+          "note": 4,
+          "line": 1,
+          "frame": 0,
+          "arrow": 2,
+          "highlight": 0,
+          "embed": 4,
+          "image": 2,
+          "video": 1
+        }
+      },
+      "instance_presence": {
+        "version": 5
+      },
+      "pointer": {
+        "version": 1
+      }
+    }
+  },
+  "records": [
+    {
+      "gridSize": 10,
+      "name": "",
+      "meta": {},
+      "id": "document:document",
+      "typeName": "document"
+    },
+    {
+      "id": "pointer:pointer",
+      "typeName": "pointer",
+      "x": -208.72440344465264,
+      "y": 844.7906586244648,
+      "lastActivityTimestamp": 1703868181553,
+      "meta": {}
+    },
+    {
+      "meta": {},
+      "id": "page:page",
+      "name": "Page 1",
+      "index": "a1",
+      "typeName": "page"
+    },
+    {
+      "x": 294.1343757148919,
+      "y": -148.79622300151436,
+      "z": 0.5284255608607231,
+      "meta": {},
+      "id": "camera:page:page",
+      "typeName": "camera"
+    },
+    {
+      "editingShapeId": null,
+      "croppingShapeId": null,
+      "selectedShapeIds": [],
+      "hoveredShapeId": null,
+      "erasingShapeIds": [],
+      "hintingShapeIds": [],
+      "focusedGroupId": null,
+      "meta": {},
+      "id": "instance_page_state:page:page",
+      "pageId": "page:page",
+      "typeName": "instance_page_state"
+    },
+    {
+      "followingUserId": null,
+      "opacityForNextShape": 0.75,
+      "stylesForNextShape": {
+        "tldraw:horizontalAlign": "start",
+        "tldraw:geo": "rectangle",
+        "tldraw:fill": "none"
+      },
+      "brush": null,
+      "scribbles": [],
+      "cursor": {
+        "type": "default",
+        "rotation": 0
+      },
+      "isFocusMode": false,
+      "exportBackground": true,
+      "isDebugMode": false,
+      "isToolLocked": true,
+      "screenBounds": {
+        "x": 0,
+        "y": 0,
+        "w": 686,
+        "h": 650
+      },
+      "zoomBrush": null,
+      "isGridMode": true,
+      "isPenMode": false,
+      "chatMessage": "",
+      "isChatting": false,
+      "highlightedUserIds": [],
+      "canMoveCamera": true,
+      "isFocused": true,
+      "devicePixelRatio": 2,
+      "isCoarsePointer": false,
+      "isHoveringCanvas": true,
+      "openMenus": [],
+      "isChangingStyle": false,
+      "isReadonly": false,
+      "meta": {},
+      "id": "instance:instance",
+      "currentPageId": "page:page",
+      "typeName": "instance"
+    },
+    {
+      "x": 4.75390625,
+      "y": 52.7421875,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "text",
+      "props": {
+        "color": "black",
+        "size": "m",
+        "w": 296.7109375,
+        "text": "NAVBAR (responsive):\n- logout\n- dashboard\n- admin management\n- business management",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:page",
+      "index": "a1",
+      "id": "shape:CXnExabfbqBpysYBVLrVT",
+      "typeName": "shape"
+    },
+    {
+      "x": 479.90625,
+      "y": 54.08203125,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "text",
+      "props": {
+        "color": "black",
+        "size": "m",
+        "w": 142.75,
+        "text": "SIGN IN:\n- email\n- password",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:page",
+      "index": "a2",
+      "id": "shape:xp6qzuN5_M0zsZjqL9Kfa",
+      "typeName": "shape"
+    },
+    {
+      "x": -25.797581072551395,
+      "y": 266.7246247826553,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "text",
+      "props": {
+        "color": "black",
+        "size": "m",
+        "w": 752.1328125,
+        "text": "Dashboard (2 charts):\n- pie chart : \n  +amount of super admins\n  +amount of adminst\n- line chart :\n    + nb of business added on a certain day in a given month\n    + the chart should show the current month",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:page",
+      "index": "a3",
+      "id": "shape:h82ikqPGlDd0wFHm35RjK",
+      "typeName": "shape"
+    },
+    {
+      "x": -32.69835592130326,
+      "y": 558.1059738903512,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "text",
+      "props": {
+        "color": "black",
+        "size": "m",
+        "w": 1039.96875,
+        "text": "ADMIN MANAGEMENT PAGE:\n  - table list include: \n     - email\n     - roles (admin or super admin)\n     - last signin date \n      as super admin:\n           + can see all roles (admin and super admin)\n           + see delete button (can delete admins AND super admins AND themselves\n                a simple model box should show up for confirmation\n      as admin: \n          + can see ONLY admins\n          + can't delete or add anyone\n  - as super admin you can see an ADD USER button:\n    + can add admin and super admin (after press add you redirect to another page\n        to fill infos such \"email, role, ...\" after press add the other user should receive\n        in their email an init password)",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:page",
+      "index": "a4",
+      "id": "shape:lfZLyPhp8SCkXYABCmeIA",
+      "typeName": "shape"
+    },
+    {
+      "x": -64.64258973656617,
+      "y": 551.0246370641194,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "geo",
+      "props": {
+        "w": 1113.5993984687618,
+        "h": 555.1495293966154,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "draw",
+        "size": "m",
+        "font": "draw",
+        "text": "",
+        "align": "start",
+        "verticalAlign": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "parentId": "page:page",
+      "index": "a5",
+      "id": "shape:tXUjeUON1hcItW_QHxWKs",
+      "typeName": "shape"
+    },
+    {
+      "x": -64.2011946143172,
+      "y": 247.9400689473964,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "geo",
+      "props": {
+        "w": 824.1940296452219,
+        "h": 278.3299958019722,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "draw",
+        "size": "m",
+        "font": "draw",
+        "text": "",
+        "align": "start",
+        "verticalAlign": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "parentId": "page:page",
+      "index": "a6",
+      "id": "shape:n1N1KAGJ2_4W1VsXThKVy",
+      "typeName": "shape"
+    },
+    {
+      "x": -60.78089073443675,
+      "y": 1172.1639182151846,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "type": "text",
+      "props": {
+        "color": "black",
+        "size": "m",
+        "w": 1093.1953125,
+        "text": "BUSINESS MANAGEMENT:\n- List view visible for all roles that contains:\n  + name \n  + image\n  + details\n  + delete button (to delete the current business)\n- ADD button : after press the page open up to add an business (name, image, details?) ",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:page",
+      "index": "a7",
+      "id": "shape:b9gghfkHbklOfR1Atuo9A",
+      "typeName": "shape"
+    },
+    {
+      "x": -77.400567072395,
+      "y": 1156.3685110053075,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:pxkGHLjL96CbAzd9ycBZE",
+      "type": "geo",
+      "props": {
+        "w": 1152.685263783349,
+        "h": 272.8902136474628,
+        "geo": "rectangle",
+        "color": "black",
+        "labelColor": "black",
+        "fill": "none",
+        "dash": "draw",
+        "size": "m",
+        "font": "draw",
+        "text": "",
+        "align": "start",
+        "verticalAlign": "middle",
+        "growY": 0,
+        "url": ""
+      },
+      "parentId": "page:page",
+      "index": "a8",
+      "typeName": "shape"
+    }
+  ]
+}
