@@ -1,7 +1,3 @@
-import { cookieName } from "@/constants";
-import { cookies } from "next/headers";
-
-
 export const Logout = async () => {
     try {
         const res = await fetch("/api/auth/logout", {

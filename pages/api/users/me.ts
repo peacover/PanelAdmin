@@ -17,8 +17,29 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
             },
             select: {
                 id: true,
+                status: true,
             },
         });
+        if (!user || user.status === "DELETED") {
+            console.log("111user not found!");
+            // res.setHeader(
+            //     "Set-Cookie",
+            //     `${cookieName}=deleted; path=/ ; Max-Age=0`
+            // );
+            const ret = await fetch("http://localhost:3000/api/auth/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // "credentials": "include",
+                    // "Access-Control-Allow-Origin": "*",
+                    Cookie: `${cookieName}=${cookie};`,
+
+                },
+            });
+            console.log("cookie: ", cookie);
+            // res.redirect("/auth/signIn");
+            console.log("user not found!");
+        }
         res.status(200).json(user?.id);
     }
     catch(e){

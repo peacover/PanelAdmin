@@ -33,14 +33,14 @@ async function createAdmin(nb: number) {
   }
 }
 
-const createBusinessAdmin = async (nb: number, userType : Role) => {
+const createBusinessAdmin = async (nb: number, userType: Role) => {
   for (let i = 0; i < nb; i++) {
     const buss_data = {
       name: faker.company.buzzNoun(),
       imageUrl: faker.image.url(),
       description: faker.lorem.paragraph(),
       // updatedAt: faker.date.recent({ days: 30 }),
-      updatedAt: faker.date.soon({days: 30}),
+      updatedAt: faker.date.soon({ days: 30 }),
     };
     const buss = await db.user.findMany({
       where: {
@@ -64,10 +64,12 @@ const createBusinessAdmin = async (nb: number, userType : Role) => {
 };
 
 async function main() {
-  // await createSuperAdmin(4);
-  // await createAdmin(10);
-  await createBusinessAdmin(30, Role.ADMIN);
-  await createBusinessAdmin(10, Role.SUPERADMIN);
+  Promise.all([
+    await createAdmin(10),
+    await createSuperAdmin(6),
+    await createBusinessAdmin(30, Role.ADMIN),
+    await createBusinessAdmin(10, Role.SUPERADMIN),
+  ]);
 }
 
 main()

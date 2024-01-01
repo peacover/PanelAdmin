@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/database/db";
 import { getUserId } from "@/lib/utils/getUserId";
 

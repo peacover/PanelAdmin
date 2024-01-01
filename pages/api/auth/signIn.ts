@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import { SignJWT } from "jose";
 import { cookieName, jwtSecret } from "@/constants";
 import { serialize } from "cookie";
+import { Status } from "@prisma/client";
 
 const createJWT = async (userId: string) => {
   const iat = Math.floor(Date.now() / 1000);
@@ -22,7 +23,6 @@ const createJWT = async (userId: string) => {
 
 const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    // const { email, password } = { "email": "Marty_Auer39@gmail.com", "password": "password" };
     const { email, password } = req.body;
     const user_email = await db.user.findUnique({
       where: {
@@ -32,10 +32,14 @@ const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
         id: true,
         password: true,
         email: true,
+        status: true,
       },
     });
     if (!user_email) {
       res.status(400).json({ message: "Email Not Found!" });
+    }
+    if (user_email?.status === Status.DELETED) {
+      res.status(400).json({ message: "Unauthorized User!"});
     }
     try {
       if (!user_email?.password)
