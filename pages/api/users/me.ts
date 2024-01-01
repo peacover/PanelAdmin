@@ -21,7 +21,6 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
             },
         });
         if (!user || user.status === "DELETED") {
-            console.log("111user not found!");
             // res.setHeader(
             //     "Set-Cookie",
             //     `${cookieName}=deleted; path=/ ; Max-Age=0`

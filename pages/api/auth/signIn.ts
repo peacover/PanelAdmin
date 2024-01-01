@@ -59,6 +59,15 @@ const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
               maxAge: 60 * 60 * 24 * 7,
             })
           );
+          // update last signin
+          await db.user.update({
+            where: {
+              id: user_email.id,
+            },
+            data: {
+              lastSignIn: new Date(),
+            },
+          });
           res.status(200).json({ message: "Login successfully" });
         } else {
           res.status(400).json({ message: "Wrong Password!" });

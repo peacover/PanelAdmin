@@ -11,15 +11,15 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
+  id         String   @id @default(uuid())
   name       String
-  email      String    @unique
+  email      String   @unique
   password   String
   role       Role
-  status     Status    @default(ACTIVE)
-  lastSignIn DateTime? @default(now())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  status     Status   @default(ACTIVE)
+  lastSignIn DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Relationships
   businesses Business[]
