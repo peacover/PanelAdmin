@@ -2,7 +2,6 @@
 
 import { TUser } from "@/lib/types/TUser";
 import deleteUser from "@/server-actions/deleteUser";
-import { ro } from "@faker-js/faker";
 import { Role } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
