@@ -1,6 +1,6 @@
 "use client";
 
-import { TState } from "@/lib/types/useFormState";
+import { TState } from "@/lib/types/TFormState";
 import { AddUserSchema } from "@/lib/validations/addUser.schema";
 import addUser from "@/server-actions/addUser";
 import { Role } from "@prisma/client";
@@ -59,9 +59,9 @@ const CardAddUser = () => {
         <button type="submit">Add User</button>
       </form>
       {/* show error if any */}
-        {addUserState.error && <p>{addUserState.error}</p>}
-        {/* show success message if any */}
-        {addUserState.success && <p>User Added</p>}
+      {addUserState.error && <p>{addUserState.error}</p>}
+      {/* show success message if any */}
+      {addUserState.success && <p>User Added</p>}
     </div>
   );
 };

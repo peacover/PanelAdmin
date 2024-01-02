@@ -46,5 +46,4 @@ export const config = {
   // matcher: ["/dashboard", "/api"],
 };
 
-// Howell56@gmail.com
 // Cornell52@gmail.com
