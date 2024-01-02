@@ -3,56 +3,57 @@
 import { TState } from "@/lib/types/TFormState";
 import { AddBusinessSchema } from "@/lib/validations/addBusiness.schema";
 import addBusiness from "@/server-actions/addBusiness";
-import upload_image from "@/server-actions/uploadImage";
+import { createClient } from "@supabase/supabase-js";
 import { useFormState } from "react-dom";
-
-const SUP_URL = process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL as string;
-const SUP_KEY = process.env.NEXT_PUBLIC_SUPABASE_API_KEY as string;
+import { v4 as uuid_v4 } from "uuid";
 
 const handleAddBusiness = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name") as string | null;
   const image = formData.get("image") as File;
   const description = formData.get("description") as string | null;
   try {
-    console.log("ana hna 1");
-    
-    const business = AddBusinessSchema.safeParse({
-      name,
-      image,
-      description,
-    });
-    console.log("ana hna 2");
-    if (!business.success) {
+  const business = AddBusinessSchema.safeParse({
+    name,
+    image,
+    description,
+  });
+  if (!business.success) {
+    return {
+      error: business.error.message,
+      success: false,
+    };
+  }
+  
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+    );
+    const file_name = name + "-" + uuid_v4();
+    const { data, error } = await supabase.storage
+      .from("PanelAdminBucket")
+      .upload(file_name, image as File);
+    const filePath = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/PanelAdminBucket/${file_name}`;
+
+    if (error) {
       return {
-        error: business.error.message,
+        error: "Error uploading image, ensure it is an image!",
         success: false,
       };
     }
-    console.log("ana hna 3");
-    // await upload_image(image);
-    
-    // const supabase = createClient(SUP_URL, SUP_KEY);
-    // const { data, error } = await supabase.storage
-    //   .from("PanelAdminBucket")
-    //   .upload("public" + image.name, image as File);
-    //   const filepath = `${SUP_URL}/test`;
-    //   if(data) console.log("data: ", data)
-    //   else console.log("error: ", error)
-    //   console.log("data: ", data);
-    //   console.log("filepath: ", filepath);
-    // await addBusiness(
-    //   business.data.name,
-    //   business.data.image,
-    //   business.data.description ?? ""
-    // );
-    console.log("ana hna 4");
+
+    // const {data:filePath} = supabase.storage.from("PanelAdminBucket").getPublicUrl(file_name);
+    await addBusiness(
+      business.data.name,
+      filePath,
+      business.data.description ?? ""
+    );
     return {
       error: null,
       success: true,
     };
   } catch (error) {
     return {
-      error: (error as Error).message,
+      error: "Error adding business",
       success: false,
     };
   }
@@ -128,6 +129,8 @@ const CardAddBusiness = () => {
       </form>
       {/* show error if any */}
       {addBusState.error && <p>{addBusState.error}</p>}
+      {/* show success message if any */}
+      {addBusState.success && <p>Business Added</p>}
     </div>
   );
 };

@@ -38,7 +38,6 @@ const handleSubmit = async (prevState: TState, formData: FormData) => {
       success: true,
     };
   } catch (error) {
-    console.log("ana f error: ", error);
     return {
       error: "Invalid Credentials test!!",
       success: false,

@@ -35,11 +35,8 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
                 },
             });
-            console.log("cookie: ", cookie);
-            // res.redirect("/auth/signIn");
-            console.log("user not found!");
         }
-        res.status(200).json(user?.id);
+        res.status(200).json(user?.id)
     }
     catch(e){
         res.status(400).json({ message: "Error while getting user!" });

@@ -1,5 +1,4 @@
 import getAmountUsers from "@/server-actions/getAmountUsers";
-import getBusPerDayInCurMonth from "@/server-actions/getBusPerDayInCurMonth";
 
 const PieChart = async () => {
     const {nb_admin , nb_super_admin} = await getAmountUsers();

@@ -10,7 +10,7 @@ const getAllBusiness = async () => {
         name: true,
         imageUrl: true,
         description: true,
-        updatedAt: true,
+        createdAt: true,
         owner: {
           select: {
             id: true,
@@ -19,9 +19,13 @@ const getAllBusiness = async () => {
         },
       },
       orderBy: {
-        updatedAt: "asc",
+        createdAt: "desc",
       },
     });
+    // change form of date using typeScript
+    // all_bus.map((bus) => {
+    //   bus.updatedAt = bus.updatedAt.toISOString().slice(0, 10);
+    // });
     return all_bus;
   } catch (e) {
     console.log("Error while getting all businesses: ", e);

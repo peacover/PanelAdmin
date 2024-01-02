@@ -5,7 +5,6 @@ import { db } from "@/lib/database/db";
 const deleteBusiness = async (businessId: string) => {
 
   try {
-    console.log("businessId", businessId);
     const del_bus = await db.business.delete({
       where: {
           id: businessId as string,
@@ -13,7 +12,8 @@ const deleteBusiness = async (businessId: string) => {
   });
     return true;
   } catch (e) {
-    console.log("hna kayn mouchkil:", e);
+    console.log("Error while deleting business: ", e);
+    return false;
   }
 };
 

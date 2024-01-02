@@ -15,7 +15,7 @@ const logout = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     catch (e) {
         console.log("error in logout: ", e);
-        return res.status(500).json({ message: "Something went wrong" });
+        return res.status(500).json({ message: "Something went wrong in Logout!" });
     }
 }
 export default logout;
