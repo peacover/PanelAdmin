@@ -11,7 +11,7 @@ const getCookie = async (name: string) => {
 export const getUserId = async () => {
   try {
     const cookie = await getCookie(cookieName);
-    const res = await fetch("http://localhost:3000/api/users/me", {
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/users/me", {
       headers: {
         Cookie: `${cookieName}=${cookie};`,
       },
