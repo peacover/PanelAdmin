@@ -4,11 +4,11 @@ import { getUserId } from "@/lib/utils/getUserId";
 
 
 export default async function Dashboard() {
-  const myId = await getUserId();
+  // const myId = await getUserId();
 
   return (
     <div>
-      <h1>{myId}</h1>
+      {/* <h1>{myId}</h1> */}
       <h1>Dashboard Page</h1>
       <PieChart />
       <LineChart />

@@ -67,7 +67,7 @@ async function main() {
   Promise.all([
     await createAdmin(10),
     await createSuperAdmin(6),
-    await createBusinessAdmin(30, Role.ADMIN),
+    await createBusinessAdmin(40, Role.ADMIN),
     await createBusinessAdmin(10, Role.SUPERADMIN),
   ]);
 }

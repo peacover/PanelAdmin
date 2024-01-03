@@ -1,16 +1,19 @@
 "use server";
 
 import { db } from "@/lib/database/db";
-import { Role } from "@prisma/client";
+import { Role, Status } from "@prisma/client";
 
 const deleteUser = async (userId: string, role: string) => {
     try{
         if(role !== Role.SUPERADMIN){
             throw new Error("Unauthorized!");
         }
-        const del_user = await db.user.delete({
+        const del_user = await db.user.update({
             where: {
-                id: userId,
+                id: userId as string,
+            },
+            data: {
+                status: Status.DELETED,
             },
         });
         return true;

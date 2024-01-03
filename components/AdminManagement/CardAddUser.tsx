@@ -4,8 +4,9 @@ import { TState } from "@/lib/types/TFormState";
 import { AddUserSchema } from "@/lib/validations/addUser.schema";
 import addUser from "@/server-actions/addUser";
 import { Role } from "@prisma/client";
-import React from "react";
-import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 
 const handleAddUser = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name");
@@ -25,6 +26,10 @@ const handleAddUser = async (prevState: TState, formData: FormData) => {
       };
     }
     await addUser(user.data);
+    // clear input fields
+    formData.set("name", "");
+    formData.set("email", "");
+    formData.set("role", "");
 
     return {
       error: null,
@@ -43,6 +48,16 @@ const CardAddUser = () => {
     error: null,
     success: false,
   });
+  const router = useRouter();
+  const { pending } = useFormStatus()
+
+  useEffect(() => {
+    if (addUserState.success) {
+      router.refresh();
+    }
+  }
+  , [addUserState.success]);
+
 
   return (
     <div>
@@ -56,12 +71,14 @@ const CardAddUser = () => {
           <option value={Role.ADMIN}>ADMIN</option>
           <option value={Role.SUPERADMIN}>SUPERADMIN</option>
         </select>
-        <button type="submit">Add User</button>
+        <button type="submit" aria-disabled={pending}>Add User</button>
       </form>
       {/* show error if any */}
       {addUserState.error && <p>{addUserState.error}</p>}
       {/* show success message if any */}
       {addUserState.success && <p>User Added</p>}
+      {/* show loading if any */}
+      {pending && <p>Loading...</p>}
     </div>
   );
 };

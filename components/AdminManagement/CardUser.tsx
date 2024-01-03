@@ -26,6 +26,7 @@ const CardUser : React.FC<{user: TUser, role:Role}> = ({user, role}) => {
             <h1>{user.role}</h1>
             <h1>{user.updatedAt?.toString()}</h1>
             {role === Role.SUPERADMIN && <button onClick={handleDelUser}>Delete</button>}
+            {error && <p>{error}</p>}
         </ul>
     );
 };

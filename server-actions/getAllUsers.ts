@@ -4,7 +4,7 @@ import { db } from "@/lib/database/db";
 import { TAllUsers } from "@/lib/types/TAllUsers";
 import { TUser } from "@/lib/types/TUser";
 import { getUserId } from "@/lib/utils/getUserId";
-import { Role } from "@prisma/client";
+import { Role, Status } from "@prisma/client";
 
 const getAllUsers = async () => {
   try {
@@ -24,6 +24,7 @@ const getAllUsers = async () => {
     const users_admin: TUser[] = await db.user.findMany({
       where: {
         role: Role.ADMIN,
+        status: Status.ACTIVE,
         id: {
           not: userId,
         },
@@ -43,6 +44,7 @@ const getAllUsers = async () => {
       const users_super_admin: TUser[] = await db.user.findMany({
         where: {
           role: Role.SUPERADMIN,
+          status: Status.ACTIVE,
           id: {
             not: userId,
           },

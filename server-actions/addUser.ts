@@ -20,13 +20,13 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
     const generates_password = Math.random().toString(36).slice(-8);
     //send this password to the user email
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const ret_send_email = await resend.emails.send({
-      from: "PanelAdmin <onboarding@resend.dev>",
-    //   to: email,
-      to: "yousseferraki98@gmail.com",
-      subject: "Welcome to PanelAdmin!",
-      html: render(EmailTemplate({ name, email, password: generates_password })),
-    });
+    // const ret_send_email = await resend.emails.send({
+    //   from: "PanelAdmin <onboarding@resend.dev>",
+    // //   to: email,
+    //   to: "yousseferraki98@gmail.com",
+    //   subject: "Welcome to PanelAdmin!",
+    //   html: render(EmailTemplate({ name, email, password: generates_password })),
+    // });
     // if (ret_send_email.error) {
     //   throw new Error("Error while sending email");
     // }

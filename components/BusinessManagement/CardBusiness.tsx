@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CardBusiness: React.FC<{ bus: TBusiness }> = async ({ bus }) => {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   const handleDeleteBus = async () => {
     try {
       await deleteBusiness(bus.id);
@@ -30,8 +30,7 @@ const CardBusiness: React.FC<{ bus: TBusiness }> = async ({ bus }) => {
       <h1>{bus.updatedAt?.toLocaleString()}</h1>
       <h1>{bus.owner?.name}</h1>
 
-      {/* handle confirmation modal */}
-      <button id={bus.id} onClick={handleDeleteBus} type="button">
+      <button onClick={handleDeleteBus}>
         Delete
       </button>
       {error && <p>{error}</p>}

@@ -4,26 +4,29 @@ import { TState } from "@/lib/types/TFormState";
 import { AddBusinessSchema } from "@/lib/validations/addBusiness.schema";
 import addBusiness from "@/server-actions/addBusiness";
 import { createClient } from "@supabase/supabase-js";
-import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { v4 as uuid_v4 } from "uuid";
+import SubmitButton from "../ui/SubmitButton";
 
 const handleAddBusiness = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name") as string | null;
   const image = formData.get("image") as File;
   const description = formData.get("description") as string | null;
   try {
-  const business = AddBusinessSchema.safeParse({
-    name,
-    image,
-    description,
-  });
-  if (!business.success) {
-    return {
-      error: business.error.message,
-      success: false,
-    };
-  }
-  
+    const business = AddBusinessSchema.safeParse({
+      name,
+      image,
+      description,
+    });
+    if (!business.success) {
+      return {
+        error: business.error.message,
+        success: false,
+      };
+    }
+
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL as string,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
@@ -58,11 +61,19 @@ const handleAddBusiness = async (prevState: TState, formData: FormData) => {
     };
   }
 };
+
 const CardAddBusiness = () => {
   const [addBusState, addBusAction] = useFormState(handleAddBusiness, {
     error: null,
     success: false,
   });
+  const router = useRouter();
+  useEffect(() => {
+    if (addBusState.success) {
+      router.refresh();
+    }
+  }, [addBusState.success]);
+
   return (
     <div>
       <form
@@ -119,13 +130,7 @@ const CardAddBusiness = () => {
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           ></textarea>
         </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-        >
-          Add Business
-        </button>
+        <SubmitButton title="Add Business"/>
       </form>
       {/* show error if any */}
       {addBusState.error && <p>{addBusState.error}</p>}

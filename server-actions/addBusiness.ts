@@ -2,8 +2,6 @@
 
 import { db } from "@/lib/database/db";
 import { getUserId } from "@/lib/utils/getUserId";
-import { TAddBusinessInput } from "@/lib/validations/addBusiness.schema";
-import { createClient } from "@supabase/supabase-js";
 
 const addBusiness = async (
   name: string,

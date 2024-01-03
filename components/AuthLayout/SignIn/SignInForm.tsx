@@ -3,9 +3,8 @@
 import { TState } from "@/lib/types/TFormState";
 import { LoginUserSchema } from "@/lib/validations/user.schema";
 import { fetchLogin } from "@/server-actions/Login";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
 const handleSubmit = async (prevState: TState, formData: FormData) => {
@@ -81,6 +80,7 @@ const SignInForm = () => {
                   placeholder="john@example.com"
                   required
                   type="email"
+                  autoComplete="email"
                 />
               </div>
               <div className="space-y-2">
@@ -93,6 +93,7 @@ const SignInForm = () => {
                   name="password"
                   required
                   type="password"
+                  autoComplete="current-password"
                 />
               </div>
               <button
