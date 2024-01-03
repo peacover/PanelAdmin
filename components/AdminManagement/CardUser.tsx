@@ -4,7 +4,7 @@ import { TUser } from "@/lib/types/TUser";
 import deleteUser from "@/server-actions/deleteUser";
 import { Role } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CardUser : React.FC<{user: TUser, role:Role}> = ({user, role}) => {
     const[error, setError] = useState<string | null>(null);
