@@ -1,3 +1,5 @@
+'use server'
+ 
 import { cookieName } from "@/constants";
 import { db } from "@/lib/database/db";
 import { getJwtId } from "@/lib/utils/getUserId";
@@ -6,11 +8,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
     try{
-        console.log("halo");
         const cookie = req.cookies[cookieName] as string;
-        console.log("halo cookie", cookie);
         const userId = await getJwtId(cookie) as string;
-        console.log("halo user", userId);
         if (!userId) {
             res.status(400).json({ message: "Invalid Token!" });
         }
@@ -23,7 +22,6 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
                 status: true,
             },
         });
-        console.log("halo user 2", user);
         if (!user || user.status === "DELETED") {
             // res.setHeader(
             //     "Set-Cookie",
@@ -40,7 +38,6 @@ const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
                 },
             });
         }
-        console.log("halo user 3", user, user?.id);
         res.status(200).json(user?.id)
     }
     catch(e){

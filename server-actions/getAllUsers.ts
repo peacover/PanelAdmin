@@ -8,9 +8,7 @@ import { Role, Status } from "@prisma/client";
 
 const getAllUsers = async () => {
   try {
-    console.log("getAllUsers");
     const userId = await getUserId();
-    console.log("userId: ", userId);
     if (!userId) {
       throw new Error("Unauthorized!");
     }
@@ -22,7 +20,6 @@ const getAllUsers = async () => {
         role: true,
       },
     });
-    console.log("ha ana : ", role_user);
     const users_admin: TUser[] = await db.user.findMany({
       where: {
         role: Role.ADMIN,
@@ -42,7 +39,6 @@ const getAllUsers = async () => {
         lastSignIn: "desc",
       },
     });
-    console.log("users_admin: ", users_admin);
     if (role_user?.role === Role.SUPERADMIN) {
       const users_super_admin: TUser[] = await db.user.findMany({
         where: {
@@ -63,7 +59,6 @@ const getAllUsers = async () => {
           lastSignIn: "desc",
         },
       });
-      console.log("users_super_admin: ", users_super_admin);
       const ret: TAllUsers = {
         users_admin: users_admin,
         users_super_admin: users_super_admin,

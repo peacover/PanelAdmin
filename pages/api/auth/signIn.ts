@@ -1,3 +1,5 @@
+"use server";
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/database/db";
 import bcrypt from "bcrypt";
@@ -5,6 +7,7 @@ import { SignJWT } from "jose";
 import { cookieName, jwtSecret } from "@/constants";
 import { serialize } from "cookie";
 import { Status } from "@prisma/client";
+import { cookies } from "next/headers";
 
 const createJWT = async (userId: string) => {
   const iat = Math.floor(Date.now() / 1000);
@@ -39,7 +42,7 @@ const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({ message: "Email Not Found!" });
     }
     if (user_email?.status === Status.DELETED) {
-      res.status(400).json({ message: "Unauthorized User!"});
+      res.status(400).json({ message: "Unauthorized User!" });
     }
     try {
       if (!user_email?.password)
@@ -59,6 +62,7 @@ const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
               maxAge: 60 * 60 * 24 * 7,
             })
           );
+
           // update last signin
           await db.user.update({
             where: {
