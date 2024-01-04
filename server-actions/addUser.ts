@@ -17,20 +17,19 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
     if (check_email && check_email.status !== "DELETED") {
       throw new Error("Email already exists");
     }
-    const generates_password = Math.random().toString(36).slice(-8);
+    const generated_password = Math.random().toString(36).slice(-8);
     //send this password to the user email
     const resend = new Resend(process.env.RESEND_API_KEY);
     const ret_send_email = await resend.emails.send({
       from: "PanelAdmin <noreply@paneladmin.website>",
       to: email,
       subject: "Welcome to PanelAdmin!",
-      html: render(EmailTemplate({ name, email, password: generates_password })),
+      html: render(EmailTemplate({ name, email, password: generated_password })),
     });
-    // console.log("ret_send_email", ret_send_email);
-    if (ret_send_email.error) {
-      throw new Error("Error while sending email");
-    }
-    const hashed_password = await bcrypt.hash(generates_password, 10);
+    // if (ret_send_email.error) {
+    //   throw new Error("Error while sending email");
+    // }
+    const hashed_password = await bcrypt.hash(generated_password, 10);
     if (check_email && check_email.status === "DELETED") {
       const user = await db.user.update({
         where: {

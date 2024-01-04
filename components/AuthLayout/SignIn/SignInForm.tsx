@@ -59,7 +59,7 @@ const SignInForm = () => {
 
   return (
     <div>
-      <div className="rounded-lg border bg-card shadow-sm mx-auto max-w-sm">
+      <div className="rounded-lg border bg-card shadow-sm mx-auto max-w-sm bg-gray-100">
         <form action={signInAction} className="flex flex-col space-y-4">
           <div className="flex flex-col p-6 space-y-1">
             <h3 className="tracking-tight text-2xl font-bold">Sign In</h3>
@@ -68,7 +68,7 @@ const SignInForm = () => {
             </p>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-4 mb-0">
               <div className="space-y-2">
                 <label className="text-sm font-medium " htmlFor="email">
                   Email
@@ -97,7 +97,7 @@ const SignInForm = () => {
                 />
               </div>
               <button
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-500 text-white"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full bg-gray-900 text-white"
                 type="submit"
               >
                 Sign In

@@ -2,7 +2,7 @@ import { cookieName, jwtSecret } from "@/constants";
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
-const AUTH_ROUTES = ["/auth/signIn"];
+const AUTH_ROUTES = ["/auth/signIn", "/"];
 
 export const validateJWT = async (token: string) => {
   const { payload } = await jwtVerify(

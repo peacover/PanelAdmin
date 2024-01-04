@@ -6,7 +6,7 @@ import addBusiness from "@/server-actions/addBusiness";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { v4 as uuid_v4 } from "uuid";
 import SubmitButton from "../ui/SubmitButton";
 
