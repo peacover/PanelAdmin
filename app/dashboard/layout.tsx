@@ -1,4 +1,9 @@
 import Footer from "@/components/Footer/Footer";
+import Header from "@/components/SideBar/Header";
+import HeaderMobile from "@/components/SideBar/HeaderMobile";
+import MarginWidthWrapper from "@/components/SideBar/MarginWidthWrapper";
+import PageWrapper from "@/components/SideBar/PageWrapper";
+
 import SideBar from "@/components/SideBar/SideBar";
 
 export default function RootLayout({
@@ -8,9 +13,21 @@ export default function RootLayout({
   }) {
     return (
       <div className="bg-gray-100">
-        <h1>Root Layout</h1>
-        <SideBar />
-        {children}
+        {/* <h1>Root Layout</h1> */}
+        {/* <SideBar /> */}
+        {/* <Header />
+        <HeaderMobile />
+        {children} */}
+
+          <SideBar />
+          <main className="flex-1">
+            <MarginWidthWrapper>
+              <Header />
+              <HeaderMobile />
+              {/* <PageWrapper>{children}</PageWrapper> */}
+              {children}
+            </MarginWidthWrapper>
+          </main>
         <Footer />
       </div>
     );

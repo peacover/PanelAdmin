@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/icons/logo.svg";
 import rootImage from "@/public/pa_root_image.jpg";
-import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   return (
