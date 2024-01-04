@@ -7,11 +7,11 @@ const SubmitButton = ({ title, ...props }: { title: string }) => {
   return (
     <button
       type="submit"
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+      className="mt-6 bg-black text-white px-4 py-2 rounded-md transition duration-300"
       disabled={pending}
       {...props}
     >
-      {pending ? "Loading..." : title}
+      {pending ? "Adding..." : title}
     </button>
   );
 };
