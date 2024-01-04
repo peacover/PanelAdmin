@@ -61,9 +61,8 @@ const HeaderMobile = () => {
       >
         {SIDENAV_ITEMS.map((item, idx) => {
           const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
-
           return (
-            <div className="">
+            <div key={item.path}>
               <div key={idx}>
                 {item.submenu ? (
                   <MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
@@ -78,9 +77,6 @@ const HeaderMobile = () => {
                     >
                       {item.title}
                     </Link>
-                    {/* <div className="mb-[6rem]">
-                      <LogoutButton />
-                    </div> */}
                   </MenuItem>
                 )}
 
@@ -88,21 +84,14 @@ const HeaderMobile = () => {
                   <MenuItem className="my-4 h-[1.8px]  w-full bg-blue-800 " />
                 )}
               </div>
-              {isOpen && isLastItem &&(
-        // make my button in the buttom
-        <div className="mt-[10rem] flex justify-center">
-          <LogoutButton className="inline-flex items-center justify-center w-[15rem] rounded-md text-sm h-[4rem] text-white font-bold bg-red-500" />
-        </div>
-      )}
+              {isOpen && isLastItem && (
+                <div className="mt-[10rem] flex justify-center">
+                  <LogoutButton className="inline-flex items-center justify-center w-[15rem] rounded-md text-sm h-[4rem] text-white font-bold bg-red-500" />
+                </div>
+              )}
             </div>
           );
         })}
-      {/* { isOpen && (
-        // make my button in the buttom
-        <div className="mt-[500px]">
-          <LogoutButton />
-        </div>
-      )} */}
       </motion.ul>
       <MenuToggle toggle={toggleOpen} />
     </motion.nav>

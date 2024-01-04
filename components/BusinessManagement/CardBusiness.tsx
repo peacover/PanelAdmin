@@ -18,21 +18,21 @@ const CardBusiness: React.FC<{ bus: TBusiness }> = async ({ bus }) => {
     }
   };
   return (
-    <div key={bus.id} className="border-4 border-black">
+    <div className="border-4 border-black">
       <h1>{bus.name}</h1>
       <h1>{bus.imageUrl}</h1>
       <Image
         src={bus.imageUrl}
         alt="Picture of the author"
-        width={500}
-        height={300}
+        width="0"
+        height="0"
+        sizes="100vw"
+        className="w-[300px] h-[150px]"
       />
       <h1>{bus.updatedAt?.toLocaleString()}</h1>
       <h1>{bus.owner?.name}</h1>
 
-      <button onClick={handleDeleteBus}>
-        Delete
-      </button>
+      <button onClick={handleDeleteBus}>Delete</button>
       {error && <p>{error}</p>}
     </div>
   );

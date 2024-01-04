@@ -12,7 +12,6 @@ import Image from "next/image";
 import logo from "@/public/icons/logo.svg";
 import LogoutButton from "./LogoutButton";
 
-
 const SideBar = () => {
   return (
     <div className="md:w-60 bg-white h-screen flex-col fixed border-r border-zinc-200 hidden md:flex">
@@ -24,14 +23,16 @@ const SideBar = () => {
           <Image
             src={logo}
             alt="Community Image"
-            width="100"
-            height="30"
             priority={true}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-[150px] h-[80px]"
           />
         </Link>
 
         <div className="flex flex-col space-y-2 md:px-6 mt-[6rem]">
-        {SIDENAV_ITEMS.map((item, idx) => {
+          {SIDENAV_ITEMS.map((item, idx) => {
             return <MenuItem key={idx} item={item} />;
           })}
         </div>

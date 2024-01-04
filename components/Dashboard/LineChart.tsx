@@ -26,7 +26,7 @@ ChartJS.register(
   ArcElement
 );
 
-const LineChart = () => {
+const LineChart = ({ ...props }) => {
   const [nbBusArr, setNbBusArr] = useState<number[]>([]);
   const [dateArr, setDateArr] = useState<string[]>([]);
 
@@ -47,7 +47,7 @@ const LineChart = () => {
       },
       title: {
         display: true,
-        text: "Number of Business per day in current month",
+        // text: "Number of Business per day in current month",
         font: {
           size: 16,
         },
@@ -89,9 +89,13 @@ const LineChart = () => {
   };
 
   return (
-    <div className="border-2 border-black w-1/2 p-4 rounded-md shadow-md bg-white">
-      <h1 className="text-2xl font-bold mb-4">Line Chart</h1>
-      <Line data={data} options={options} />
+    <div {...props}>
+      <div className="border-2 border-black w-full p-4 rounded-md shadow-md bg-white">
+        <h1 className="text-2xl font-bold mb-4 flex justify-center">
+        Number of Business per day in current month
+        </h1>
+        <Line data={data} options={options} />
+      </div>
     </div>
   );
 };

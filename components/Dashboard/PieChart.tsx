@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
-const PieChart = () => {
+const PieChart = ({...props}) => {
   const [nbAdmin, setNbAdmin] = useState<number>(0);
   const [nbSuperAdmin, setNbSuperAdmin] = useState<number>(0);
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -32,9 +32,11 @@ const PieChart = () => {
     responsive: true,
   };
   return (
-    <div className="border-2 border-black w-1/3">
-      <h1>PieChart</h1>
+    <div {...props}>
+    <div className="border-2 border-black w-[30rem] p-4 rounded-md shadow-md bg-white">
+      <h1 className="text-2xl font-bold mb-4 flex justify-center">Amount Of Users</h1>
       <Pie data={data} options={chartOptions} />
+    </div>
     </div>
   );
 };

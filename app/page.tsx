@@ -5,11 +5,18 @@ import rootImage from "@/public/pa_root_image.jpg";
 
 export default function Home() {
   return (
-    // make page doesnt scroll
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <header className="flex justify-center items-center p-6">
-          <Image src={logo} alt="PanelAdmin Logo" width="150" height="100" />
+          <Image
+            src={logo}
+            alt="PanelAdmin Logo"
+            priority={true}
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-[150px] h-[100px]"
+          />
         </header>
         <main className="flex flex-col items-center justify-center py-12 md:py-24">
           <div className="container px-4 md:px-6">
@@ -37,9 +44,11 @@ export default function Home() {
               <Image
                 src={rootImage}
                 alt="Community Image"
-                width="750"
-                height="310"
-                className="rounded-md shadow-md"
+                priority={true}
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-[750px] h-[310px]"
               />
             </div>
           </div>

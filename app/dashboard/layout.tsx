@@ -7,29 +7,22 @@ import PageWrapper from "@/components/SideBar/PageWrapper";
 import SideBar from "@/components/SideBar/SideBar";
 
 export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) {
-    return (
-      <div className="bg-gray-100">
-        {/* <h1>Root Layout</h1> */}
-        {/* <SideBar /> */}
-        {/* <Header />
-        <HeaderMobile />
-        {children} */}
-
-          <SideBar />
-          <main className="flex-1">
-            <MarginWidthWrapper>
-              <Header />
-              <HeaderMobile />
-              {/* <PageWrapper>{children}</PageWrapper> */}
-              {children}
-            </MarginWidthWrapper>
-          </main>
-        <Footer />
-      </div>
-    );
-  }
-  
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bg-gray-100">
+      <SideBar />
+      <main className="flex-1">
+        <MarginWidthWrapper>
+          <Header />
+          <HeaderMobile />
+          {/* <PageWrapper>{children}</PageWrapper> */}
+          {children}
+        </MarginWidthWrapper>
+      </main>
+      <Footer />
+    </div>
+  );
+}
