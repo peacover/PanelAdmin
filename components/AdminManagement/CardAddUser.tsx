@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import SubmitButton from "../ui/SubmitButton";
+import { AlertDialogAdmin } from "./AlertDialogAdmin";
 
 const handleAddUser = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name");
@@ -127,6 +128,7 @@ const CardAddUser = () => {
         </select>
 
         <SubmitButton title="Add User"/>
+        {/* <AlertDialogAdmin /> */}
       </form>
 
       {/* Show error if any */}

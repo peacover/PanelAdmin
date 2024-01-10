@@ -5,7 +5,7 @@ import React from "react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "@/lib/hooks/useScroll";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib/utils/utils";
 import Image from "next/image";
 import mini_logo from "@/public/icons/mini_logo.svg";
 

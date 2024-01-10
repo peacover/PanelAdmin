@@ -8,11 +8,13 @@ const getAmountUsers = async () => {
         const nb_admin = await db.user.count({
             where: {
                 role: Role.ADMIN,
+                status: "ACTIVE",
             }
         });
         const nb_super_admin = await db.user.count({
             where: {
                 role: Role.SUPERADMIN,
+                status: "ACTIVE",
             }
         });
         if (nb_admin > 0 || nb_super_admin > 0)

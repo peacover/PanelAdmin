@@ -65,10 +65,10 @@ const createBusinessAdmin = async (nb: number, userType: Role) => {
 
 async function main() {
   Promise.all([
-    await createAdmin(10),
+    // await createAdmin(10),
     await createSuperAdmin(6),
-    await createBusinessAdmin(40, Role.ADMIN),
-    await createBusinessAdmin(10, Role.SUPERADMIN),
+    // await createBusinessAdmin(40, Role.ADMIN),
+    // await createBusinessAdmin(10, Role.SUPERADMIN),
   ]);
 }
 

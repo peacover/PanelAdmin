@@ -1,7 +1,7 @@
 import LineChart from "@/components/Dashboard/LineChart";
 import PieChart from "@/components/Dashboard/PieChart";
 import useScroll from "@/lib/hooks/useScroll";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@/lib/utils/utils"
 import { getUserId } from "@/lib/utils/getUserId";
 import { useSelectedLayoutSegment } from "next/navigation";
 

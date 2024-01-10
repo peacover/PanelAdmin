@@ -1,12 +1,29 @@
 "use server";
 
 import { db } from "@/lib/database/db";
+import { getUserId } from "@/lib/utils/getUserId";
 import { Role, Status } from "@prisma/client";
+import { get } from "http";
 
-const deleteUser = async (userId: string, role: string) => {
+const deleteUser = async (userId: string) => {
     try{
-        if(role !== Role.SUPERADMIN){
+        const loggedInUserId = await getUserId();
+        const loggedInUser = await db.user.findUnique({
+            where: {
+                id: loggedInUserId as string,
+                status: Status.ACTIVE,
+            },
+        });
+        if(!loggedInUser){
             throw new Error("Unauthorized!");
+        }
+        const user = await db.user.findUnique({
+            where: {
+                id: userId as string,
+            },
+        });
+        if(!user){
+            throw new Error("User not found!");
         }
         const del_user = await db.user.update({
             where: {
