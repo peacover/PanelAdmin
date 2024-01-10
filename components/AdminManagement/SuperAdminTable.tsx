@@ -13,10 +13,8 @@ import {
   Pagination,
   Spinner,
 } from "@nextui-org/react";
-import { useFormStatus } from "react-dom";
 import { AlertDialogAdmin } from "./AlertDialogAdmin";
-import { useRouter } from "next/navigation";
-import deleteUser from "@/server-actions/deleteUser";
+
 // import useSWR from "swr";
 
 // const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -25,15 +23,6 @@ const SuperAdminTable: React.FC<{ users: TUser[]; role: Role }> = ({
   users,
   role,
 }) => {
-  // const {data, isLoading} = useSWR(`https://swapi.py4e.com/api/people?page=${page}`, fetcher, {
-  //   keepPreviousData: true,
-  // });
-
-  //   const loadingState =
-  //     isLoading || data?.results.length === 0 ? "loading" : "idle";
-
-  const { pending } = useFormStatus();
-
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -43,8 +32,8 @@ const SuperAdminTable: React.FC<{ users: TUser[]; role: Role }> = ({
   return (
     <>
       {isClient && (
-        <Table aria-label="Example table with client async pagination">
-          <TableHeader>
+        <Table>
+          <TableHeader >
             <TableColumn key="name">Name</TableColumn>
             <TableColumn key="email">Email</TableColumn>
             <TableColumn key="role">Role</TableColumn>
@@ -58,7 +47,6 @@ const SuperAdminTable: React.FC<{ users: TUser[]; role: Role }> = ({
           <TableBody
             items={users ?? []}
             loadingContent={<Spinner />}
-            // loadingState={loadingState}
           >
             {users?.map((user) => (
               <TableRow key={user.id}>

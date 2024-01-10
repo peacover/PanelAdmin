@@ -23,7 +23,7 @@ const Header = () => {
     //     }
     //   )}
     // >
-      <div className="flex h-[70px] items-center justify-between px-4">
+      <div className="flex h-5 items-center justify-between px-4">
         <div className="flex items-center ">
           <Link
             href="/dashboard"

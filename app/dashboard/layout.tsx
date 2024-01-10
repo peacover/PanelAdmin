@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <div className="bg-gray-100">
       <SideBar />
-      <main className="flex-1">
+      <main>
         <MarginWidthWrapper>
           <Header />
           <HeaderMobile />
