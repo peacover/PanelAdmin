@@ -32,8 +32,8 @@ const SuperAdminTable: React.FC<{ users: TUser[]; role: Role }> = ({
   return (
     <>
       {isClient && (
-        <Table>
-          <TableHeader >
+        <Table aria-label="Basic table">
+          <TableHeader>
             <TableColumn key="name">Name</TableColumn>
             <TableColumn key="email">Email</TableColumn>
             <TableColumn key="role">Role</TableColumn>

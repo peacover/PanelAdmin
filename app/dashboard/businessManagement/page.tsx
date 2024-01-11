@@ -1,9 +1,9 @@
 import ListBusiness from "@/components/BusinessManagement/ListBusiness";
 
-const businessManagement = async () => {
+const businessManagement = () => {
   return (
-    <div className="border-4 border-blue-500">
-      <h1>businessManagement Page</h1>
+    <div className="container p-8 bg-white shadow-md rounded-md">
+      <h1 className="text-3xl font-bold mb-6">Business Management Page</h1>
       <ListBusiness />
     </div>
   );

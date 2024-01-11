@@ -10,7 +10,7 @@ const getAllBusiness = async () => {
         name: true,
         imageUrl: true,
         description: true,
-        createdAt: true,
+        updatedAt: true,
         owner: {
           select: {
             id: true,

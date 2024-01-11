@@ -42,7 +42,7 @@ const AdminTable: React.FC<{ users: TUser[]; role: Role }> = ({
   return (
     <>
     {isClient && (
-    <Table aria-label="Example table with client async pagination">
+    <Table aria-label="Basic table">
       <TableHeader>
         <TableColumn key="name">Name</TableColumn>
         <TableColumn key="email">Email</TableColumn>
