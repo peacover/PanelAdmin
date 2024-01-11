@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,8 +11,20 @@ import { TSideNavItem } from "@/lib/types/TSideNavItems";
 import Image from "next/image";
 import logo from "@/public/icons/logo.svg";
 import LogoutButton from "./LogoutButton";
+import getMyRole from "@/server-actions/getMyRole";
+import { Role } from "@prisma/client";
 
 const SideBar = () => {
+  const [myRole, setMyRole] = useState<Role | null>(null);
+  useEffect(() => {
+    const getRole = async () => {
+      const role = await getMyRole();
+      setMyRole(role);
+    };
+    getRole();
+  }
+  , []);
+    
   return (
     <div className="md:w-60 bg-white h-screen flex-col fixed border-r border-zinc-200 hidden md:flex">
       <div className="flex flex-col flex-grow">
@@ -33,7 +45,7 @@ const SideBar = () => {
 
         <div className="flex flex-col space-y-2 md:px-6 mt-[6rem]">
           {SIDENAV_ITEMS.map((item, idx) => {
-            return <MenuItem key={idx} item={item} />;
+            return <MenuItem key={idx} item={item} role={myRole}/>;
           })}
         </div>
       </div>
@@ -46,12 +58,14 @@ const SideBar = () => {
 
 export default SideBar;
 
-const MenuItem = ({ item }: { item: TSideNavItem }) => {
+const MenuItem = ({ item, role }: { item: TSideNavItem , role: Role | null}) => {
   const pathname = usePathname();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const toggleSubMenu = () => {
     setSubMenuOpen(!subMenuOpen);
   };
+
+  // const myRole = await getMyRole();
 
   return (
     <div>
@@ -76,6 +90,9 @@ const MenuItem = ({ item }: { item: TSideNavItem }) => {
           {subMenuOpen && (
             <div className="my-2 ml-12 flex flex-col space-y-4">
               {item.subMenuItems?.map((subItem, idx) => {
+              // console.log("test :", subItem.title);
+                if (role === Role.ADMIN && subItem.title === "Add User")
+                  return null;
                 return (
                   <Link
                     key={idx}

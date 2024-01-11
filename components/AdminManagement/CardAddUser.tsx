@@ -60,31 +60,8 @@ const CardAddUser = () => {
   }, [addUserState.success]);
 
   return (
-    // <div>
-    //   <form action={addUserAction}>
-    //     <label htmlFor="name">Name</label>
-    //     <input type="text" name="name" id="name" />
-    //     <label htmlFor="email">Email</label>
-    //     <input type="email" name="email" id="email" />
-    //     <label htmlFor="role">Role</label>
-    //     <select name="role" id="role">
-    //       <option value={Role.ADMIN}>ADMIN</option>
-    //       <option value={Role.SUPERADMIN}>SUPERADMIN</option>
-    //     </select>
-    //     <button type="submit" aria-disabled={pending}>Add User</button>
-    //   </form>
-    //   {/* show error if any */}
-    //   {addUserState.error && <p>{addUserState.error}</p>}
-    //   {/* show success message if any */}
-    //   {addUserState.success && <p>User Added</p>}
-    //   {/* show loading if any */}
-    //   {pending && <p>Loading...</p>}
-    // </div>
-    <div className="max-w-md mx-auto">
-      <form
-        action={addUserAction}
-        className="bg-white shadow-md rounded-md p-6"
-      >
+    <div className="bg-white shadow-md rounded-md p-6 w-[40rem] h-[27rem] flex flex-col justify-center">
+      <form action={addUserAction} className="">
         <h2 className="text-2xl font-semibold mb-6">Add User</h2>
         <label
           htmlFor="name"
@@ -127,7 +104,7 @@ const CardAddUser = () => {
           <option value={Role.SUPERADMIN}>SUPERADMIN</option>
         </select>
 
-        <SubmitButton title="Add User"/>
+          <SubmitButton title="Add User" />
         {/* <AlertDialogAdmin /> */}
       </form>
 
