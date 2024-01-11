@@ -26,10 +26,6 @@ const getBusPerDayInCurMonth = async () => {
     },
   });
 
-  // console.log("all_bus", all_bus);
-  // console.log("startOfMonth", startOfMonth);
-  // console.log("endOfMonth", endOfMonth);
-
   const businessCountByDay = all_bus.reduce((acc: any, bus) => {
     const date: string = bus.updatedAt.toISOString().split("T")[0];
     acc[date] = acc[date] ? acc[date] + 1 : 1;

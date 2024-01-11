@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Favicon from "/public/icons/mini_logo.svg";
 import { cn } from "@/lib/utils/utils";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <Toaster richColors/>
         {children}
       </body>
     </html>

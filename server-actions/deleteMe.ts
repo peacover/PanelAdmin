@@ -24,10 +24,10 @@ const deleteMe = async () => {
                 "Content-Type": "application/json",
             },
         });
+        console.log("logout res: ", res);
         return true;
     }
     catch (e) {
-        console.log("Error while deleting user: ", e);
         return false;
     }
 }

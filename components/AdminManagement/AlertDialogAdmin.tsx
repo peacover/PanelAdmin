@@ -12,22 +12,21 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import deleteUser from "@/server-actions/deleteUser";
+import { toast } from "sonner";
+
 
 export function AlertDialogAdmin({ userId }: { userId: string }) {
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const handleDelUser = async () => {
-    console.log("handleDelUser");
-    console.log(userId);
     try {
       await deleteUser(userId);
+      toast.success("User deleted");
       router.refresh();
     } catch (err) {
       console.error(err);
-      setError("Error deleting user");
+      toast.error("Error deleting user");
     }
   };
   return (
@@ -52,7 +51,6 @@ export function AlertDialogAdmin({ userId }: { userId: string }) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      {error && <p>{error}</p>}
     </>
   );
 }

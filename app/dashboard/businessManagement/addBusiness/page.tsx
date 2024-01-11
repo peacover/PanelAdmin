@@ -2,7 +2,7 @@ import CardAddBusiness from "@/components/BusinessManagement/CardAddBusiness";
 
 const addBusinessPage = () => {
     return (
-        <div>
+        <div className="flex justify-center items-center h-screen w-full">
             <CardAddBusiness />
         </div>
     );

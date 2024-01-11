@@ -26,9 +26,9 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
       subject: "Welcome to PanelAdmin!",
       html: render(EmailTemplate({ name, email, password: generated_password })),
     });
-    // if (ret_send_email.error) {
-    //   throw new Error("Error while sending email");
-    // }
+    if (ret_send_email.error) {
+      throw new Error("Error while sending email");
+    }
     const hashed_password = await bcrypt.hash(generated_password, 10);
     if (check_email && check_email.status === "DELETED") {
       const user = await db.user.update({
@@ -52,7 +52,6 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
         role,
       },
     });
-    console.log("user", user);
     return { message: "User added successfully" };
   } catch (error: any) {
     throw new Error(error.message);

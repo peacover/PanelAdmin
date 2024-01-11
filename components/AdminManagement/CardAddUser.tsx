@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import SubmitButton from "../ui/SubmitButton";
 import { AlertDialogAdmin } from "./AlertDialogAdmin";
+import { toast } from "sonner";
 
 const handleAddUser = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name");
@@ -22,6 +23,9 @@ const handleAddUser = async (prevState: TState, formData: FormData) => {
     });
 
     if (!user.success) {
+      user.error.issues.forEach((issue) => {
+        toast.error(issue.message);
+      });
       return {
         error: user.error.message,
         success: false,
@@ -33,11 +37,13 @@ const handleAddUser = async (prevState: TState, formData: FormData) => {
     formData.set("email", "");
     formData.set("role", "");
 
+    toast.success("User added successfully!");
     return {
       error: null,
       success: true,
     };
   } catch (error) {
+    toast.error((error as Error).message);
     return {
       error: (error as Error).message,
       success: false,
@@ -61,7 +67,7 @@ const CardAddUser = () => {
 
   return (
     <div className="bg-white shadow-md rounded-md p-6 w-[40rem] h-[27rem] flex flex-col justify-center">
-      <form action={addUserAction} className="">
+      <form action={addUserAction}>
         <h2 className="text-2xl font-semibold mb-6">Add User</h2>
         <label
           htmlFor="name"
@@ -104,19 +110,9 @@ const CardAddUser = () => {
           <option value={Role.SUPERADMIN}>SUPERADMIN</option>
         </select>
 
-          <SubmitButton title="Add User" />
+        <SubmitButton title="Add User" />
         {/* <AlertDialogAdmin /> */}
       </form>
-
-      {/* Show error if any */}
-      {addUserState.error && (
-        <p className="text-red-500 mt-4">{addUserState.error}</p>
-      )}
-
-      {/* Show success message if any */}
-      {addUserState.success && (
-        <p className="text-green-500 mt-4">User Added Successfully</p>
-      )}
     </div>
   );
 };

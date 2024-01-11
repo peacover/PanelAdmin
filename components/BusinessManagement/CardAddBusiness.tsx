@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { v4 as uuid_v4 } from "uuid";
 import SubmitButton from "../ui/SubmitButton";
+import { toast } from "sonner";
+
 
 const handleAddBusiness = async (prevState: TState, formData: FormData) => {
   const name = formData.get("name") as string | null;
@@ -21,6 +23,9 @@ const handleAddBusiness = async (prevState: TState, formData: FormData) => {
       description,
     });
     if (!business.success) {
+      business.error.issues.forEach((issue) => {
+        toast.error(issue.message);
+      });
       return {
         error: business.error.message,
         success: false,
@@ -38,6 +43,7 @@ const handleAddBusiness = async (prevState: TState, formData: FormData) => {
     const filePath = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/PanelAdminBucket/${file_name}`;
 
     if (error) {
+      toast.error("Error uploading image, ensure it is an image!");
       return {
         error: "Error uploading image, ensure it is an image!",
         success: false,
@@ -50,13 +56,15 @@ const handleAddBusiness = async (prevState: TState, formData: FormData) => {
       filePath,
       business.data.description ?? ""
     );
+    toast.success("Business added successfully!");
     return {
       error: null,
       success: true,
     };
   } catch (error) {
+    toast.error((error as Error).message);
     return {
-      error: "Error adding business",
+      error: (error as Error).message,
       success: false,
     };
   }
@@ -70,16 +78,14 @@ const CardAddBusiness = () => {
   const router = useRouter();
   useEffect(() => {
     if (addBusState.success) {
+      // toast.success("Business added successfully!");
       router.refresh();
     }
   }, [addBusState.success]);
 
   return (
-    <div>
-      <form
-        action={addBusAction}
-        className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md"
-      >
+    <div className="bg-white shadow-md rounded-md p-6 w-[40rem] h-[35rem] flex flex-col justify-center">
+      <form action={addBusAction}>
         <h2 className="text-2xl font-semibold mb-6">Add Business</h2>
 
         <div className="mb-4">
@@ -92,7 +98,6 @@ const CardAddBusiness = () => {
           <input
             type="text"
             name="name"
-            required
             id="name"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           />
@@ -132,10 +137,6 @@ const CardAddBusiness = () => {
         </div>
         <SubmitButton title="Add Business" />
       </form>
-      {/* show error if any */}
-      {addBusState.error && <p>{addBusState.error}</p>}
-      {/* show success message if any */}
-      {addBusState.success && <p>Business Added</p>}
     </div>
   );
 };

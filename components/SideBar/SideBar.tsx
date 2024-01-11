@@ -90,7 +90,6 @@ const MenuItem = ({ item, role }: { item: TSideNavItem , role: Role | null}) => 
           {subMenuOpen && (
             <div className="my-2 ml-12 flex flex-col space-y-4">
               {item.subMenuItems?.map((subItem, idx) => {
-              // console.log("test :", subItem.title);
                 if (role === Role.ADMIN && subItem.title === "Add User")
                   return null;
                 return (
