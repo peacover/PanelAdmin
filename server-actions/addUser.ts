@@ -24,7 +24,7 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
       from: "PanelAdmin <noreply@paneladmin.website>",
       to: email,
       subject: "Welcome to PanelAdmin!",
-      html: render(EmailTemplate({ name, email, password: generated_password })),
+      html: render(EmailTemplate({ name, email, password: generated_password, role})),
     });
     if (ret_send_email.error) {
       throw new Error("Error while sending email");
