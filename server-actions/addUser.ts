@@ -14,7 +14,7 @@ const addUser = async ({ name, email, role }: TAddUserInput) => {
         email,
       },
     });
-    if (check_email && check_email.status !== "DELETED") {
+    if (check_email && check_email.status === "ACTIVE") {
       throw new Error("Email already exists");
     }
     const generated_password = Math.random().toString(36).slice(-8);
